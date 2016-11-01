@@ -1,0 +1,15 @@
+Title: Error 400 if trying authorizes user
+
+Description:
+Error 400 in response to a request API method POST Authorizes user and sets session cookie.
+
+Step to reproduce:
+1.Send POST request to the API /acl/auth/{authType}/{authAccountId} with correct credentials, as documented in API calls-updated.
+
+Expected result:
+Response fields:
+userId: String -- id of newly created user
+sessionId: String -- id of newly created session
+
+Actual result:
+Error 400 (Bad Request)

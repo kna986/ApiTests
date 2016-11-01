@@ -1,0 +1,24 @@
+Title: In response, there is no field accountId.
+
+Description:
+In response to a method call GET info about user no field accountId.
+
+Step to reproduce:
+1.Send GET request to the API /core/users/{id}
+
+Expected result:
+Response fields:
+id
+accountId
+fullName
+about
+creationTime
+roles
+
+Actual result:
+Response fields:
+id
+fullName
+about
+creationTime
+roles
