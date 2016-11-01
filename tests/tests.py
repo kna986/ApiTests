@@ -14,8 +14,8 @@ class APITestCase(unittest.TestCase):
     '''
 
 
-    user_passwd = u'OlolololOO'
-    user_mail = u'test@mail.ch'
+    user_passwd = u'some password'
+    user_mail = u'some e-mail'
     user_name = u'Test User'
     user_role = [u'DbRoleCustomer']
     user_id = ApiModel().registers_user(user_mail, user_passwd, user_name)
@@ -40,7 +40,7 @@ class APITestCase(unittest.TestCase):
 
     def test_for_numbers_response_fields(self, ui=user_id, un=user_name, ur=user_role):
         about_user = self.api.get_user(ui)
-        expected_info = {u'about': u'', u'fullName': un, u'creationTime': u'2016-10-31T11:54:18.902Z', u'id': u'0b01828473511000', u'accountId': u'', u'roles': ur}
+        expected_info = {u'about': u'', u'fullName': un, u'creationTime': u'2016-10-31T11:54:18.902Z', u'id': u'', u'accountId': u'', u'roles': ur}
         for key in expected_info:
             if expected_info[key] > about_user[key]:
                 raise AssertionError(key)
@@ -59,8 +59,4 @@ class APITestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-#api.get_ticket()
-#api.authorizes_user() #400 now((((
-#api.registers_user()
 
