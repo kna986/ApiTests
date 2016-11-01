@@ -31,10 +31,7 @@ class APITestCase(unittest.TestCase):
         Or in tests we need random generate user accountId, but this is bad way
         '''
         pass
-    '''
-    def test_register_user(self):
-        self.test_register_user()
-    '''
+        
     def test_get_user(self, ui=user_id):
         self.api.get_user(ui)
 
