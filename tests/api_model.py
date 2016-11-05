@@ -26,10 +26,7 @@ class ApiModel(object):
         Return: dict with user's profile information
         '''
         result = self.s.get(self.url + '/core/users/' + user_id)
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
         return json.loads(result.text)
 
     def get_ticket(self, ticket_id):
@@ -38,23 +35,17 @@ class ApiModel(object):
         Return: dict with ticket's information
         '''
         result = self.s.get(self.url + '/tickets/' + ticket_id)
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
         return json.loads(result.text)
 
     def registers_user(self, mail, passwd, user_name):
         ''' POST Registers user and sets session cookie. Does not require authorization
         Must have three credentials
-        Return: dict with userId: String and sessionId: String
+        Return: String with userId
         '''
         data = {"authType": "DbAuthTypeInternal", "authAccountId":mail, "password":passwd, "name": user_name, "remember": False}
         result = self.s.post(self.url + '/core/users', data=json.dumps(data))
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
         get_dict = json.loads(result.text)
         return get_dict['userId']
 
@@ -65,10 +56,7 @@ class ApiModel(object):
         '''
         data = {"password":password}
         result = self.s.post(self.url + '/acl/auth/%s/%s' % (auth_type, authAccount_id), data=json.dumps(data))
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
         return json.loads(result.text)
 
     def change_user_role(self, user_id, user_role):
@@ -77,10 +65,7 @@ class ApiModel(object):
         '''
         data = {"role":user_role}
         result = self.s.post(self.url + '/acl/users/' + user_id + '/roles', data=json.dumps(data))
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
         return json.loads(result.text)
 
     def user_role_delete(self, user_id, role):
@@ -89,7 +74,4 @@ class ApiModel(object):
         '''
         data = {"role":role}
         result = self.s.delete(self.url + '/acl/users/' + user_id + '/roles', data=json.dumps(data))
-        try:
-            assert result.status_code == 200
-        except AssertionError:
-            raise Exception(result.status_code)
+        assert result.status_code == 200, result.status_code
